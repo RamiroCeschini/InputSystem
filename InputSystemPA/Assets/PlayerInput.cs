@@ -1,18 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private CustomInput input;
+    private Vector2 movVector;
+    private PlayerShoot shoot;
+
+    public Vector2 MovVector { get { return movVector; } }
+
+    private void Awake()
     {
-        
+        AwakeMetod();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void AwakeMetod()
     {
-        
+        input = new CustomInput();
+        shoot = GetComponent<PlayerShoot>();
     }
+
+    private void OnEnable()
+    {
+        input.Enable();
+        input.Player.Mov.performed += OnMovementPerformed;
+        input.Player.Mov.canceled += OnMovementCanceled;
+        input.Player.Shoot.performed += OnShootPerformed;
+    }
+
+    private void OnDisable()
+    {
+        input.Disable();
+        input.Player.Mov.performed -= OnMovementPerformed;
+        input.Player.Mov.canceled -= OnMovementCanceled;
+        input.Player.Shoot.performed -= OnShootPerformed;
+    }
+
+    private void OnMovementPerformed(InputAction.CallbackContext value)
+    {
+        movVector = value.ReadValue<Vector2>();
+    }
+
+    private void OnMovementCanceled (InputAction.CallbackContext value)
+    {
+        movVector = Vector2.zero;
+    }
+
+    private void OnShootPerformed(InputAction.CallbackContext context)
+    {
+        shoot.Shoot();
+    }
+
 }
