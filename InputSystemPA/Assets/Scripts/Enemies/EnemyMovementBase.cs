@@ -7,6 +7,7 @@ public class EnemyMovementBase : MonoBehaviour
     [SerializeField] ScriptableEnemy enemyInfo;
     private Rigidbody2D rb;
     private float speed;
+    private bool firstEnable = true;
     private void Start()
     {
         speed = enemyInfo.S_speed;
@@ -15,7 +16,8 @@ public class EnemyMovementBase : MonoBehaviour
 
     private void OnEnable()
     {
-        InvokeRepeating("ChangeDirection", 0f, 2f);
+        if (firstEnable) { firstEnable = false; return; }
+        InvokeRepeating("ChangeDirection", 2f, 2f);
     }
     private void Update()
     {

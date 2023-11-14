@@ -36,7 +36,7 @@ public class PlayerLife : MonoBehaviour, ILifeSystem
             else if (value <= 0)
             {
                 currentLife = 0;
-                Debug.Log("Muelto");
+                GameManager.SharedInstance.PlayerDeath();
             }
 
         }

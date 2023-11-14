@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PoolCannonBullet
   m_EditorClassIdentifier: 
   s_amount: 3
-  s_bulletPrefab: {fileID: 1733990426482573504, guid: 0c7a8abf9e100144aa2491b9f1aeea85, type: 3}
+  s_objectPrefab: {fileID: 1733990426482573504, guid: 0c7a8abf9e100144aa2491b9f1aeea85, type: 3}
   s_name: CannonBullet
   s_pooledObjects:
   - {fileID: 0}

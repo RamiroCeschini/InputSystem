@@ -44,7 +44,7 @@ public class ObjectPool : MonoBehaviour
 
         for (int i = 0; i < pool.S_amount; i++)
         {
-            tmp = Instantiate(pool.S_bulletPrefab);
+            tmp = Instantiate(pool.S_objectPrefab);
             tmp.SetActive(false);
             pool.s_pooledObjects.Add(tmp);
         }
@@ -63,7 +63,7 @@ public class ObjectPool : MonoBehaviour
         }
 
         GameObject tmp;
-        tmp = Instantiate(selected.S_bulletPrefab);
+        tmp = Instantiate(selected.S_objectPrefab);
         tmp.SetActive(false);
         selected.s_pooledObjects.Add(tmp);
         selected.s_updatedAmount++;

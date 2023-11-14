@@ -4,6 +4,8 @@ using UnityEngine;
 public class EnemyLife : MonoBehaviour,ILifeSystem
 {
     [SerializeField] private ScriptableEnemy enemyInfo;
+    [SerializeField] private WaveManager waveInfo;
+    private bool firstEnable = true;
     private EnemyLifeManager lifeUI;
     private int currentLife;
     public int MaxLife
@@ -35,10 +37,12 @@ public class EnemyLife : MonoBehaviour,ILifeSystem
     private void Awake()
     {
         lifeUI = GetComponent<EnemyLifeManager>();
+        waveInfo = GameObject.FindGameObjectWithTag("Wave").GetComponent<WaveManager>();
     }
 
     private void OnEnable()
     {
+        if (firstEnable) { firstEnable = false;  return; }
         CurrentLife = MaxLife;
         lifeUI.UpdateLife();
     }
@@ -51,5 +55,6 @@ public class EnemyLife : MonoBehaviour,ILifeSystem
     private void EnemyDeath()
     {
         gameObject.SetActive(false);
+        waveInfo.EnemyDeathCount();
     }
 }

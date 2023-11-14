@@ -10,18 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b425566a38af5c045ba4dd4a8e2f43c5, type: 3}
-  m_Name: PoolNormalBullet
+  m_Name: BaseEnemyPool
   m_EditorClassIdentifier: 
-  s_amount: 8
-  s_objectPrefab: {fileID: 1733990426482573504, guid: 8ce7f3b029cfbbb4bbfad9827a905ae3, type: 3}
-  s_name: NormalBullet
+  s_amount: 5
+  s_objectPrefab: {fileID: 6834296235878682750, guid: c7ac50dab91be0542ba695e7819e67af, type: 3}
+  s_name: BaseEnemy
   s_pooledObjects:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  s_updatedAmount: 8
+  s_updatedAmount: 5
