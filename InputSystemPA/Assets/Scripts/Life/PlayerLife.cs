@@ -42,14 +42,6 @@ public class PlayerLife : MonoBehaviour, ILifeSystem
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            TakeDamage(5);
-        }
-    }
-
     public void TakeDamage(int damage)
     {
         CurrentLife -= damage;

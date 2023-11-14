@@ -4,18 +4,34 @@ using UnityEngine;
 
 public class BulletInteraction : MonoBehaviour
 {
-    [SerializeField] private float bulletLifeTime;
     [SerializeField] private TrailRenderer trailRenderer;
-    private bool FirstEnable = true;
-
-    private void OnEnable()
-    {
-        if (FirstEnable) { FirstEnable = false; return; }
-        Invoke("DestroyBullet", bulletLifeTime);
-    }
+    [SerializeField] ScriptableBullet bulletInfo;
     private void DestroyBullet()
     {
-        gameObject.SetActive(false);
-        trailRenderer.Clear();
+        if (gameObject.activeInHierarchy)
+        { 
+            gameObject.SetActive(false);
+            trailRenderer.Clear(); 
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        CollisionWith(collision);
+        return;
+    }
+
+    private void CollisionWith(Collider2D collisionWith)
+    {
+        if (collisionWith.TryGetComponent(out ILifeSystem liveObject))
+        {
+            liveObject.TakeDamage(bulletInfo.S_damage);
+            DestroyBullet();
+        }
+
+        else if (collisionWith.CompareTag("Limit"))
+        {
+            DestroyBullet();
+        }
     }
 }
