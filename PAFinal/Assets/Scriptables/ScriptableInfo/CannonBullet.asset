@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a2a7947b35d91419233bc732371ec2, type: 3}
   m_Name: CannonBullet
   m_EditorClassIdentifier: 
-  s_damage: 8
+  s_damage: 10
   s_speed: 7
   s_name: CannonBullet
   s_coolDown: 2

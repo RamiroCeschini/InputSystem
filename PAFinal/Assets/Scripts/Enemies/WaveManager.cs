@@ -7,7 +7,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private List<string> enemyTypes;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private int totalEnemiesInWave;
-    [SerializeField] private int enemiesKilled;
+    private int enemiesKilled;
     private int timeBeetween;
     private void OnEnable()
     {

@@ -44,6 +44,15 @@ public partial class @CustomInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpecialShoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""5eb21f29-63e7-45f9-b3bb-4dee32bd5ce6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -178,6 +187,28 @@ public partial class @CustomInput: IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebc6b171-b38c-4651-a375-7044e1c1ef95"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22ca18a7-a072-4f7a-a8c5-6af99a228759"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -188,6 +219,7 @@ public partial class @CustomInput: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Mov = m_Player.FindAction("Mov", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_SpecialShoot = m_Player.FindAction("SpecialShoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,12 +283,14 @@ public partial class @CustomInput: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Mov;
     private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_SpecialShoot;
     public struct PlayerActions
     {
         private @CustomInput m_Wrapper;
         public PlayerActions(@CustomInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Mov => m_Wrapper.m_Player_Mov;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @SpecialShoot => m_Wrapper.m_Player_SpecialShoot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -272,6 +306,9 @@ public partial class @CustomInput: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @SpecialShoot.started += instance.OnSpecialShoot;
+            @SpecialShoot.performed += instance.OnSpecialShoot;
+            @SpecialShoot.canceled += instance.OnSpecialShoot;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -282,6 +319,9 @@ public partial class @CustomInput: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @SpecialShoot.started -= instance.OnSpecialShoot;
+            @SpecialShoot.performed -= instance.OnSpecialShoot;
+            @SpecialShoot.canceled -= instance.OnSpecialShoot;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -303,5 +343,6 @@ public partial class @CustomInput: IInputActionCollection2, IDisposable
     {
         void OnMov(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnSpecialShoot(InputAction.CallbackContext context);
     }
 }

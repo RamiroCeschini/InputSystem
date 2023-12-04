@@ -8,8 +8,7 @@ public class CoolDownPowerUp : PowerUp,Iinteractive
     public override string powerUpName => "CoolDownPowerUp";
     public void Action(GameObject callOrigin)
     {
-        PlayerShoot player = callOrigin.GetComponent<PlayerShoot>();
-        player.BulletChange(player.CoolDown * coolDownReduction,player.CurrentBullet);
+        callOrigin.GetComponent<PlayerShoot>().CoolDown *= coolDownReduction;
         Destroy(gameObject);
     }
 }

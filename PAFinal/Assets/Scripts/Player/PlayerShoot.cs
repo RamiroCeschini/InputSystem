@@ -6,19 +6,43 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float coolDown;
+    [SerializeField] private SpecialBulletManager sbManager;
+    private float normalCoolDown;
     private float lastShotTime;
-    private string currentBullet = "NormalBullet";
+    private string normalBullet = "NormalBullet";
 
-    public string CurrentBullet { get { return currentBullet; } }
-    public float CoolDown { get { return coolDown; } }
+    private void Start()
+    {
+        normalCoolDown = coolDown;
+    }
 
+    public float CoolDown 
+    {
+        get { return coolDown; }
+
+        set 
+        { 
+            coolDown = value;
+            Invoke("RestartCD", 5f);
+        }
+    }
 
     public void Shoot()
     {
         if (Time.time - lastShotTime < coolDown) { return; }
-        
         lastShotTime = Time.time;
-        GetBulletFromPool(currentBullet);
+        GetBulletFromPool(normalBullet);
+    }
+
+    public void SpecialShoot()
+    {
+        if (Time.time - lastShotTime < coolDown) { return; }
+        lastShotTime = Time.time;
+        if (sbManager.SBLeft > 0)
+        {
+            GetBulletFromPool("CannonBullet");
+            sbManager.ChangeSBLeft(-1);
+        }
     }
 
     private void GetBulletFromPool(string bulletName)
@@ -29,9 +53,9 @@ public class PlayerShoot : MonoBehaviour
         bullet.SetActive(true);
     }
 
-    public void BulletChange(float newCoolDown, string bulletType)
+    private void RestartCD()
     {
-        coolDown = newCoolDown;
-        currentBullet = bulletType;
+        coolDown = normalCoolDown;
     }
+
 }

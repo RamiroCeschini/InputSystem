@@ -8,7 +8,7 @@ public class CannonPowerUp : PowerUp, Iinteractive
     public override string powerUpName => "CannonPowerUp";
     public void Action(GameObject callOrigin)
     {
-        callOrigin.GetComponent<PlayerShoot>().BulletChange(bulletInfo.S_coolDown,bulletInfo.S_name);
+       callOrigin.GetComponent<SpecialBulletManager>().ChangeSBLeft(1);
         Destroy(gameObject);
     }
 

@@ -28,6 +28,7 @@ public class PlayerInput : MonoBehaviour
         input.Player.Mov.performed += OnMovementPerformed;
         input.Player.Mov.canceled += OnMovementCanceled;
         input.Player.Shoot.performed += OnShootPerformed;
+        input.Player.SpecialShoot.performed += OnSpecialShootPerformed;
     }
 
     private void OnDisable()
@@ -36,6 +37,7 @@ public class PlayerInput : MonoBehaviour
         input.Player.Mov.performed -= OnMovementPerformed;
         input.Player.Mov.canceled -= OnMovementCanceled;
         input.Player.Shoot.performed -= OnShootPerformed;
+        input.Player.SpecialShoot.performed -= OnSpecialShootPerformed;
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext value)
@@ -51,6 +53,10 @@ public class PlayerInput : MonoBehaviour
     private void OnShootPerformed(InputAction.CallbackContext context)
     {
         shoot.Shoot();
+    }
+    private void OnSpecialShootPerformed(InputAction.CallbackContext context)
+    {
+        shoot.SpecialShoot();
     }
 
 }
