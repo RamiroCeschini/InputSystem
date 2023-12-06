@@ -25,5 +25,9 @@ public class EnemyShoot : MonoBehaviour
         CancelInvoke("ShootLogic");
     }
 
+    private void OnDisable()
+    {
+        CancelInvoke("ShootLogic");
+    }
 
 }

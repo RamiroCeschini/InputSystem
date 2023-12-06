@@ -5,32 +5,36 @@ using UnityEngine;
 public class EnemyMovementBase : MonoBehaviour
 {
     [SerializeField] ScriptableEnemy enemyInfo;
-    private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
     private float speed;
     private bool firstEnable = true;
     private void Start()
     {
         speed = enemyInfo.S_speed;
-        rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
     {
         if (firstEnable) { firstEnable = false; return; }
+        SetVelocity(speed, 0f);
         InvokeRepeating("ChangeDirection", 2f, 2f);
     }
-    private void Update()
+
+    private void OnDisable()
     {
-        if (gameObject.activeInHierarchy)
-        {
-            rb.velocity = new Vector2(speed, 0);
-            return;
-        }
+        SetVelocity(0f, 0f);
         CancelInvoke("ChangeDirection");
+        speed = enemyInfo.S_speed;
+    }
+
+    private void SetVelocity(float velocityX, float velocityY)
+    {
+        rb.velocity = new Vector2(velocityX, velocityY);
     }
 
     private void ChangeDirection()
     {
         speed = -speed;
+        SetVelocity(speed, 0);
     }
 }

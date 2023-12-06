@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b425566a38af5c045ba4dd4a8e2f43c5, type: 3}
+  m_Name: TankEnemyPool
+  m_EditorClassIdentifier: 
+  s_amount: 3
+  s_objectPrefab: {fileID: 7892643638216673701, guid: d91a2533696d3f3499f2ae58e77058ce, type: 3}
+  s_name: TankEnemy
+  s_pooledObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  s_updatedAmount: 3
