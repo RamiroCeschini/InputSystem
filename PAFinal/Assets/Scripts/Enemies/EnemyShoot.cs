@@ -18,6 +18,7 @@ public class EnemyShoot : MonoBehaviour
             GameObject bullet = ObjectPool.SharedInstance.GetPooledObject(enemyInfo.S_bulletType);
             bullet.transform.position = spawnPoint.transform.position;
             bullet.transform.rotation = spawnPoint.transform.rotation;
+            bullet.GetComponent<BulletInteraction>().bulletEmisor = "Enemy";
             bullet.SetActive(true);
             return;
         }

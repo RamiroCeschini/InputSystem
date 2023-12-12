@@ -8,6 +8,7 @@ public class PlayerLife : UnitLife, ILifeSystem
     public static event Action lifeEvent;
     private void Start()
     {
+        unitType = "Player";
         currentLife = maxLife;
         lifeEvent?.Invoke();
     }

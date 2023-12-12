@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     [HideInInspector]
     public static GameManager SharedInstance;
+    public int levelToCharge = 1;
+    public int totalLevels;
     private void Awake()
     {
         SingletonSet();
@@ -20,17 +22,25 @@ public class GameManager : MonoBehaviour
         else
         {
             SharedInstance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
+
     public void WaveClear()
     {
-        SceneManager.LoadScene(1);
+        levelToCharge++;
+        SceneManager.LoadScene(2);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void PlayerDeath()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
+        Cursor.lockState = CursorLockMode.None;
     }
 
+
 }
+
+
