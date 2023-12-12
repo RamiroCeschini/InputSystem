@@ -10,6 +10,7 @@ public class EnemyLife : UnitLife,ILifeSystem
     
     private void Awake()
     {
+        unitType = "Enemy";
         MaxLife = enemyInfo.S_maxLife;
         lifeUI = GetComponent<EnemyLifeManager>();
         waveInfo = GameObject.FindGameObjectWithTag("Wave").GetComponent<WaveManager>();

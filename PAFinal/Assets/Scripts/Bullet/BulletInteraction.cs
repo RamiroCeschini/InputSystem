@@ -6,6 +6,7 @@ public class BulletInteraction : MonoBehaviour
 {
     [SerializeField] private TrailRenderer trailRenderer;
     [SerializeField] ScriptableBullet bulletInfo;
+    public string bulletEmisor;
     private void DestroyBullet()
     {
         if (gameObject.activeInHierarchy)
@@ -25,8 +26,15 @@ public class BulletInteraction : MonoBehaviour
     {
         if (collisionWith.TryGetComponent(out ILifeSystem liveObject))
         {
-            liveObject.TakeDamage(bulletInfo.S_damage);
-            DestroyBullet();
+            if (collisionWith.GetComponent<UnitLife>().unitType == bulletEmisor)
+            {
+                return;
+            }
+            else
+            {
+                liveObject.TakeDamage(bulletInfo.S_damage);
+                DestroyBullet();
+            }
         }
 
         else if (collisionWith.CompareTag("Limit"))

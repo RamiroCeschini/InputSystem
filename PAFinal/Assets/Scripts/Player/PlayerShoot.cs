@@ -50,6 +50,7 @@ public class PlayerShoot : MonoBehaviour
         GameObject bullet = ObjectPool.SharedInstance.GetPooledObject(bulletName);
         bullet.transform.position = spawnPoint.transform.position;
         bullet.transform.rotation = spawnPoint.transform.rotation;
+        bullet.GetComponent<BulletInteraction>().bulletEmisor = "Player";
         bullet.SetActive(true);
     }
 

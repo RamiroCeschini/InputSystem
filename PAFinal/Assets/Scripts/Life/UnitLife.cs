@@ -6,6 +6,7 @@ public class UnitLife : MonoBehaviour
 {
     [SerializeField] protected int maxLife;
     protected int currentLife;
+    public string unitType;
 
     public int MaxLife
     {
